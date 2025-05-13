@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLED Charger App Download</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #0066ff;
+        --primary-dark: #0052cc;
+        --secondary: #00c853;
+        --dark: #1a1a1a;
+        --light: #ffffff;
+        --gray: #f5f5f5;
+        --gray-dark: #e0e0e0;
+        --text: #333333;
+        --text-light: #666666;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: var(--gray);
+        /* padding: 20px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 800px;
+        width: 100%;
+        background-color: var(--light);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        margin: 40px 0;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        /* background-color: var(--primary); */
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--dark);
+      }
+
+      .subtitle {
+        font-size: 16px;
+        color: var(--text-light);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .download-section {
+        background-color: var(--gray);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .store-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .store-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 25px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        transition: all 0.3s ease;
+        min-width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .store-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .store-btn:active {
+        transform: translateY(1px);
+      }
+
+      .ios-btn {
+        background-color: var(--dark);
+      }
+
+      .apk-btn {
+        background-color: var(--primary);
+      }
+
+      .store-btn img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+
+      .guide-section {
+        margin-top: 40px;
+      }
+
+      .guide-step {
+        background-color: var(--light);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-left: 2px solid var(--primary);
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .step-number {
+        background-color: var(--primary);
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .step-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      .step-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .step-desc {
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      .step-image {
+        /* width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--gray-dark); */
+        width: 100%;
+        height: 650px;
+        background-color: #ddd;
+        border-radius: 10px;
+      }
+
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+      }
+
+      .lang-toggle:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 25px;
+        }
+
+        h1 {
+          font-size: 26px;
+        }
+
+        .store-btn {
+          width: 100%;
+        }
+
+        .guide-step {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button id="langToggle" class="lang-toggle">
+        <span id="toggleText">ქართული</span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12.0001 22C17.523 22 22.0001 17.5228 22.0001 12C22.0001 6.47715 17.523 2 12.0001 2C6.47721 2 2 6.47715 2 12C2 17.5228 6.47721 22 12.0001 22Z"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M8 16L12 12L16 16"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 12V21"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M19.78 17.5C20.74 16.24 21.26 14.67 21.26 13C21.26 8.59 17.41 5 12.76 5C11.09 5 9.52 5.52 8.26 6.47"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <div class="header">
+        <div>
+          <img src="assets/icon.png" class="logo" />
+        </div>
+        <h1 id="title">MLED Charger App</h1>
+        <p class="subtitle" id="description">
+          Download the app for your platform
+        </p>
+      </div>
+
+      <div class="download-section">
+        <h2 class="section-title">Get the App</h2>
+        <div class="store-buttons">
+          <a
+            href="https://apps.apple.com/ge/app/mled-chargers/id6744241933"
+            class="store-btn ios-btn"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+              alt="iOS"
+            />
+            <span id="iosText">App Store</span>
+          </a>
+
+          <a
+            href="/apk/application-224f2ac1-1405-4228-ac57-ae560a72e9dd.aab"
+            class="store-btn apk-btn"
+            download
+          >
+            <img
+              src="https://www.freepnglogos.com/uploads/android-logo-png/android-logo-0.png"
+              alt="APK"
+            />
+            <span id="apkText">Download APK</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="guide-section">
+        <h2 class="section-title" id="guideTitle">How to guide</h2>
+
+        <div class="guide-step">
+          <div class="step-content">
+            <p class="step-desc" id="guideDesc">
+              When you open the application, you will be taken to the main map
+              page, where you will find the location of all chargers. In order
+              to use the application, you need to be authorized, so when you
+              scan the QR code or log in, you will be authorized.
+            </p>
+            <img
+              src="assets/authmap.png"
+              alt="How to Guide"
+              class="step-image"
+            />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">1</div>
+            <h3 class="step-title" id="step1Title">Step 1</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step1Desc">
+              To authenticate and use the app, you need to enter your phone
+              number.
+            </p>
+            <img src="assets/login.png" alt="Step 1" class="step-image" />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">2</div>
+            <h3 class="step-title" id="step2Title">Step 2</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step2Desc">
+              After entering your phone number, you will receive an SMS code,
+              which will allow you to complete the authorization process.
+            </p>
+            <img src="assets/logincode.png" alt="Step 2" class="step-image" />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">3</div>
+            <h3 class="step-title" id="step3Title">Step 3</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step3Desc">
+              After you have completed the authorization process and scanned the
+              required connector, you will need to deposit or pay the amount,
+              after which the charging will begin.
+            </p>
+            <img src="assets/nomanyerror.png" alt="Step 3" class="step-image" />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">4</div>
+            <h3 class="step-title" id="step4Title">Step 4</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step4Desc">
+              The next step is to choose a recharge package, after which you
+              proceed to deposit or pay.
+            </p>
+            <img
+              src="assets/chargingproduct.png"
+              alt="Step 4"
+              class="step-image"
+            />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">5</div>
+            <h3 class="step-title" id="step5Title">Step 5</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step5Desc">
+              You choose the desired amount you want to deposit into your
+              account.
+            </p>
+            <img src="assets/payments.png" alt="Step 5" class="step-image" />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">6</div>
+            <h3 class="step-title" id="step6Title">Step 6</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step6Desc">
+              At this stage, you choose a payment method and complete the
+              payment. After which the automatic recharge will begin.
+            </p>
+            <img src="assets/chargingpay.png" alt="Step 6" class="step-image" />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">7</div>
+            <h3 class="step-title" id="step7Title">Step 7</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step9Desc">
+              After payment, charging will begin, where you will see information
+              about the charging process and you can stop the charging process
+              by pressing the stop button.
+            </p>
+            <img
+              src="assets/connectorchargingpng.png"
+              alt="Step 7"
+              class="step-image"
+            />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">8</div>
+            <h3 class="step-title" id="step8Title">Step 8</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step7Desc">
+              During the charging process, you can keep an eye on the charging
+              process by selecting the charger you are using on the map.
+            </p>
+            <img src="assets/mainmap.png" alt="Step 8" class="step-image" />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">9</div>
+            <h3 class="step-title" id="step9Title">Step 9</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step10Desc">
+              When we select the desired charger on the map, we will be able to
+              find out information about the connector information.
+            </p>
+            <img
+              src="assets/connectordetails.png"
+              alt="Step 9"
+              class="step-image"
+            />
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-header">
+            <div class="step-number">10</div>
+            <h3 class="step-title" id="step10Title">Step 10</h3>
+          </div>
+          <div class="step-content">
+            <p class="step-desc" id="step8Desc">
+              Through the profile page, you can change information, monitor and
+              view your payment and recharge history.
+            </p>
+            <img src="assets/profile.png" alt="Step 10" class="step-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        ka: {
+          title: "MLED დამტენის აპლიკაცია",
+          description: "გადმოწერეთ აპლიკაცია თქვენს მოწყობილობაზე",
+          iosText: "აპლ სტორი",
+          apkText: "აპკ ფაილის ჩამოტვირთვა",
+          guideTitle: "როგორ გამოვიყენოთ",
+          guideDesc:
+            "აპლიკაციის გახსნის შემთხვევაში თქვენ მოხვდებით მთავარ რუკის გვერდზე, სადაც იქნება ლოკაცია ყველა დამტენის შესახებ, იმისთვის რომ გამოიყენოთ აპლიკაცია საჭიროა გაიაროთ ავტორიზაცია , ამიტომ ქრ კოდის დაჭერის შემთხვევაში ან ლოგინის თქვენ მოგიწევთ გაიაროთ ავტორიზაცია.",
+          step1Title: "ნაბიჯი 1",
+          step1Desc:
+            "აპლიკაციის ავტორიზაციისა და გამოყენებისთვის, უნდა შეიყვანოთ თქვენი ტელეფონის ნომერი.",
+          step2Title: "ნაბიჯი 2",
+          step2Desc:
+            "ტელეფონის ნომრის შეყვანის შემდეგ მიიღებთ SMS კოდს, რაც საშუალებას მოგცემთ დაასრულოთ ავტორიზაციის პროცესი.",
+          step3Title: "ნაბიჯი 3",
+          step3Desc:
+            "იმის შემდეგ როცა გაივლით ავტორიზაციას და დაასკანერებთ საჭირო კონექტორს , თქვენ მოგიწევთ ჩარიცხოთ ან გადაიხადოთ თანხა, რის შემდეგაც დაიწყება დატენვა.",
+          step4Title: "ნაბიჯი 4",
+          step4Desc:
+            "შემდეგი ეტაპი არის დატენვის პაკეტის არჩევა , რომლის არჩევის შემდეგ თქვენ გადადიხართ თანხის ჩარიცხვაზე ან გადახდაზე.",
+          step5Title: "ნაბიჯი 5",
+          step5Desc:
+            "ირჩევთ სასურველ თანხას რამდენის ჩარიცხვას აპირებთ თქვენ ანგარიშზე.",
+          step6Title: "ნაბიჯი 6",
+          step6Desc:
+            "ამ ეტაპზე აირჩევთ გადახდის მეთოდს და დაასრულებთ გადახდას, რის შემდეგაც დაიწყება ავტომატური დატენვა .",
+          step7Title: "ნაბიჯი 7",
+          step7Desc:
+            "დატენვის პროცესში თქვენ შეგძლიათ აკონტროლოთ თვალი დატენვის პროცესებს მაპზე საჭირო დამტენის არჩევით , რომელსაც იყენებთ დატენვისთვის.",
+          step8Title: "ნაბიჯი 8",
+          step8Desc:
+            "პროფილის გვერდზე შეგიძლიათ შეცვალოთ ინფორმაცია დაათვალიეროთ თქვენი გადახდებისა და დატენვის ისტორია.",
+          step9Title: "ნაბიჯი 9",
+          step9Desc:
+            "გადახდის შემდეგ დაიწყება დატენვა სადაც ნახავთ ინფორმაციას დატენვის შესახებ და სტოპ ღილაკით შეგეძლებათ შეწყვიტოთ დატენვა",
+          step10Title: "ნაბიჯი 10",
+          step10Desc:
+            " როცა მაპზე ავირჩევთ სასურველ დამტენს ჩვენ შეგვეძლება გავიგოთ ინფორმაცია კონექტორის შესახებ",
+          toggle: "English",
+        },
+        en: {
+          title: "MLED Charger App",
+          description: "Download the app for your platform",
+          iosText: "App Store",
+          apkText: "Download APK",
+          guideTitle: "How to guide",
+          guideDesc:
+            "When you open the application, you will be taken to the main map page, where you will find the location of all chargers. In order to use the application, you need to be authorized, so when you scan the QR code or log in, you will be authorized.",
+          step1Title: "Step 1",
+          step1Desc:
+            "To authenticate and use the app, you need to enter your phone number.",
+          step2Title: "Step 2",
+          step2Desc:
+            "After entering your phone number, you will receive an SMS code, which will allow you to complete the authorization process.",
+          step3Title: "Step 3",
+          step3Desc:
+            "After you have completed the authorization process and scanned the required connector, you will need to deposit or pay the amount, after which the charging will begin.",
+          step4Title: "Step 4",
+          step4Desc:
+            "The next step is to choose a recharge package, after which you proceed to deposit or pay.",
+          step5Title: "Step 5",
+          step5Desc:
+            "You choose the desired amount you want to deposit into your account.",
+          step6Title: "Step 6",
+          step6Desc:
+            "At this stage, you choose a payment method and complete the payment. After which the automatic recharge will begin.",
+          step7Title: "Step 7",
+          step7Desc:
+            "During the charging process, you can keep an eye on the charging process by selecting the charger you are using on the map.",
+          step8Title: "Step 8",
+          step8Desc:
+            "Through the profile page, you can change information, monitor and view your payment and recharge history.",
+          step9Title: "Step 9",
+          step9Desc:
+            "After payment, charging will begin, where you will see information about the charging process and you can stop the charging process by pressing the stop button.",
+          step10Title: "Step 10",
+          step10Desc:
+            "When we select the desired charger on the map, we will be able to find out information about the connector information.",
+          toggle: "ქართული",
+        },
+      };
+
+      let currentLang = "en";
+
+      document.getElementById("langToggle").addEventListener("click", () => {
+        currentLang = currentLang === "en" ? "ka" : "en";
+        const t = translations[currentLang];
+
+        document.getElementById("title").textContent = t.title;
+        document.getElementById("description").textContent = t.description;
+        document.getElementById("iosText").textContent = t.iosText;
+        document.getElementById("apkText").textContent = t.apkText;
+        document.getElementById("guideTitle").textContent = t.guideTitle;
+        document.getElementById("guideDesc").textContent = t.guideDesc;
+        document.getElementById("step1Title").textContent = t.step1Title;
+        document.getElementById("step1Desc").textContent = t.step1Desc;
+        document.getElementById("step2Title").textContent = t.step2Title;
+        document.getElementById("step2Desc").textContent = t.step2Desc;
+        document.getElementById("step3Title").textContent = t.step3Title;
+        document.getElementById("step3Desc").textContent = t.step3Desc;
+        document.getElementById("step4Title").textContent = t.step4Title;
+        document.getElementById("step4Desc").textContent = t.step4Desc;
+        document.getElementById("step5Title").textContent = t.step5Title;
+        document.getElementById("step5Desc").textContent = t.step5Desc;
+        document.getElementById("step6Title").textContent = t.step6Title;
+        document.getElementById("step6Desc").textContent = t.step6Desc;
+        document.getElementById("step7Title").textContent = t.step7Title;
+        document.getElementById("step7Desc").textContent = t.step7Desc;
+        document.getElementById("step8Title").textContent = t.step8Title;
+        document.getElementById("step8Desc").textContent = t.step8Desc;
+        document.getElementById("step9Title").textContent = t.step9Title;
+        document.getElementById("step9Desc").textContent = t.step9Desc;
+        document.getElementById("step10Title").textContent = t.step10Title;
+        document.getElementById("step10Desc").textContent = t.step10Desc;
+        document.getElementById("toggleText").textContent = t.toggle;
+      });
+    </script>
+  </body>
+</html>
